@@ -1,0 +1,71 @@
+app:
+  env: default
+
+server:
+  port: 8080
+  servlet:
+    context-path: /api
+
+spring:
+  profiles:
+    active: dev
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+
+  datasource:
+    url: jdbc:h2:mem:testdb
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: ''
+
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+
+build:
+  version: "1.0"
+
+bonds:
+  defaults:
+    currency: EUR
+    coupon-frequency: 2
+    day-count-convention: ACT_360
+    clean-price-scale: 6
+    yield-scale: 6
+    rounding-mode: HALF_UP
+  settlement:
+    default-days: 2
+    rules:
+      us:
+        government: 1
+        corporate: 1
+        municipal: 1
+      eu:
+        all: 2
+      uk:
+        all: 2
+  limits:
+    min-clean-price: 0.000001
+    max-clean-price: 1000
+    min-coupon-rate: 0
+    max-coupon-rate: 1
+    min-face-value: 0.01
+    max-face-value: 1000000000
+  supported:
+    coupon-frequencies: [1, 2, 4]
+    day-count-conventions: [ACT_360, THIRTY_360, ACT_ACT]
+    currencies: [EUR, USD, RON]
