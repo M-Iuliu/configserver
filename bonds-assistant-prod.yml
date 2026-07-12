@@ -1,5 +1,5 @@
 app:
-  env: default
+  env: prod
 
 server:
   port: 8080
@@ -7,8 +7,6 @@ server:
     context-path: /api
 
 spring:
-  profiles:
-    active: dev
   mvc:
     pathmatch:
       matching-strategy: ant_path_matcher
@@ -37,7 +35,7 @@ springdoc:
     path: /swagger-ui.html
 
 build:
-  version: "1.0"
+  version: "1.0-prod"
 
 bonds:
   defaults:
@@ -69,3 +67,9 @@ bonds:
     coupon-frequencies: [1, 2, 4]
     day-count-conventions: [ACT_360, THIRTY_360, ACT_ACT]
     currencies: [EUR, USD, RON]
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,env,refresh
