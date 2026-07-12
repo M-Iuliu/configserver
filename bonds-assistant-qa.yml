@@ -35,7 +35,7 @@ springdoc:
     path: /swagger-ui.html
 
 build:
-  version: "1.0-qa"
+  version: "3.1"
 
 bonds:
   defaults:
